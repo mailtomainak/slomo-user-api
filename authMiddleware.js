@@ -8,6 +8,6 @@ module.exports = async function(req,res,next){
     next();
   }
   catch (e) {  
-    res.status(403).send('Auth Error')
+    res.status(403).send(e)
   }
 }
