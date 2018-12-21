@@ -4,10 +4,11 @@ const authMiddleWare =require('./authMiddleware');
 const userRouter = require('./userRouter');
 const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+const enableCors = require('./corsMiddleWare');
 
 const server = express();
 server.use(bodyParser.json());
+server.use(enableCors);
 server.use(authMiddleWare);
 server.use('/user',userRouter);
 

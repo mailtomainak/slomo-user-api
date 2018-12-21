@@ -7,7 +7,7 @@ module.exports = async function(req,res,next){
     req.userId = sub;
     next();
   }
-  catch (e) {
+  catch (e) {  
     res.status(403).send('Auth Error')
   }
 }
