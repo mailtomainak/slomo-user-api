@@ -5,6 +5,7 @@ const userRouter = require('./userRouter');
 const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const enableCors = require('./corsMiddleWare');
+const subscribe = require('./newRegistrationQueueSubscriber');
 
 const server = express();
 server.use(bodyParser.json());
@@ -13,5 +14,7 @@ server.use(authMiddleWare);
 server.use('/user',userRouter);
 
 server.listen(config.PORT,()=>(   
-        mongoose.connect(config.MONGO_URL)   
+        mongoose.connect(config.MONGO_URL)
+        .then(()=>{subscribe()})
+        .catch((e)=>{throw e})
 ))

@@ -1,5 +1,5 @@
 const user = require('./UserSchema').model;
-
+const registerUser = require('./RegisterUserSchema').model;
 
 async function getUser(req, res) {
     try {
@@ -10,19 +10,31 @@ async function getUser(req, res) {
         if (!userData) {
             res.status(404).send(null);
         } else {
-            res.status(200).send({});
+            res.status(200).send(userData);
         }
 
     } catch (e) {
-        console.log(e);
-        res.status(500).send(e)
+        res.status(500).send('Auth Error');
     }
 
 }
 
+async function saveUserName(userData){
+    const user =new registerUser({
+        userId:userData.userId,
+        username:userData.username
+    })
+
+    try{
+        await user.save();
+    }
+    catch (e){
+        throw e;
+    }
+}
 
 async function saveUser(req, res) {
-    console.log(req.body)
+   
     const userData = new user({
         userId:req.body.userId,
         firstName:req.body.firstName,
@@ -41,8 +53,9 @@ async function saveUser(req, res) {
     }
 }
 module.exports = {
-    getUser: getUser,
-    saveUser: saveUser
+    getUser,
+    saveUser,
+    saveUserName
 }
 
 //     deactivateUser:deactivateUser

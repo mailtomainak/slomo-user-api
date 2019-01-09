@@ -9,4 +9,4 @@ const userSchema = new mongoose.Schema({
     isActive:{type:Boolean,required:true}
 })
 
-exports.model = mongoose.model('User', userSchema, 'user__details_table');
+exports.model = mongoose.model('User', userSchema, 'user_details_table');
