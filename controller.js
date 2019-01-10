@@ -1,6 +1,6 @@
 const user = require('./UserSchema').model;
 const registerUser = require('./RegisterUserSchema').model;
-//const  ObjectId = require('mongoose').Types.ObjectId; 
+const  ObjectId = require('mongoose').Types.ObjectId; 
 async function getUser(req, res) {
     try {
 
@@ -14,8 +14,8 @@ async function getUser(req, res) {
         }
 
     } catch (e) {
-        console.log(e);
-        res.status(404).send('Auth Error');
+        
+        res.status(500).send('Auth Error');
     }
 
 }
