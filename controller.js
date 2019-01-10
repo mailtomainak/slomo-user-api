@@ -1,11 +1,11 @@
 const user = require('./UserSchema').model;
 const registerUser = require('./RegisterUserSchema').model;
-
+//const  ObjectId = require('mongoose').Types.ObjectId; 
 async function getUser(req, res) {
     try {
 
         const userData = await user.findOne({
-            userId: req.userId
+            userId: new ObjectId(req.userId)
         })
         if (!userData) {
             res.status(404).send(null);
@@ -14,7 +14,8 @@ async function getUser(req, res) {
         }
 
     } catch (e) {
-        res.status(500).send('Auth Error');
+        console.log(e);
+        res.status(404).send('Auth Error');
     }
 
 }
