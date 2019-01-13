@@ -13,7 +13,7 @@ const subscribe = () => {
                 .then(channel => {
                     channel.checkExchange('slomo.new.registrations')
                         .then(ok => {
-                            channel.assertQueue("",{exclusive: true})
+                            channel.assertQueue("slomo.new.registrations.queue")
                             .then(ok=>{
                                const queue = ok.queue;
                                channel.bindQueue(queue,'slomo.new.registrations',"")
