@@ -4,10 +4,10 @@ const userSchema = new mongoose.Schema({
     
     firstName:  {type:String,required:true},
     lastName:  {type:String,required:true},
-    contactNumber:  {type:String,required:true},
+    phone:  {type:String,required:true},
     emailId: {type:String},
     isActive:{type:Boolean},
-   'acceptedT&C':{type:Boolean,required:true},
+    acceptTerms:{type:Boolean,required:true},
     isComplete:{type:Boolean}
 })
 

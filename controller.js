@@ -35,19 +35,18 @@ async function saveUserName(userData){
 }
 
 async function saveUser(req, res) {
-   
+    const userFormData = req.body; 
     const userData = new user({
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        contactNumber:req.body.contactNumber,
+        firstName:userFormData.firstName,
+        lastName:userFormData.lastName,
+        phone:userFormData.phone,
+        acceptTerms:userFormData.acceptTerms,
         isActive: false
     });
     try {
         const userSavedResponse = await userData.save();
-        console.log(userSavedResponse);
-        res.status(201).send('Created');
+        res.status(201).send(userSavedResponse);
     } catch (e) {
-        console.log(e);
         res.send(500);
     }
 }
