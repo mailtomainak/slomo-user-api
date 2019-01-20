@@ -37,11 +37,9 @@ async function saveUserName(userData){
 async function saveUser(req, res) {
    
     const userData = new user({
-        userId:req.body.userId,
         firstName:req.body.firstName,
         lastName:req.body.lastName,
         contactNumber:req.body.contactNumber,
-        emailId:req.body.emailId,
         isActive: false
     });
     try {
