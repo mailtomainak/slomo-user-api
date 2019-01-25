@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
     emailId: {type:String},
     isActive:{type:Boolean},
     acceptTerms:{type:Boolean,required:true},
-    isComplete:{type:Boolean}
+    isComplete:{type:Boolean},
+    isNewRegistration:{type:Boolean}
 })
 
 exports.model = mongoose.model('User', userSchema, 'user_details_table');

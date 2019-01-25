@@ -3,7 +3,7 @@ const userRegistration = require('./controller');
 
 const saveMessages = msg =>{
     const userData = JSON.parse(msg.content.toString());
-    console.log(userData);
+    userData.isNewRegistration = true;
     userRegistration.saveUserName(userData)
 }
 const subscribe = () => {

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const registerUserSchema = new mongoose.Schema({
     userId: {type:mongoose.Schema.Types.ObjectId,required:true},
-    username:{type:String,required:true}
+    username:{type:String,required:true},
+    isNewRegistration:{type:Boolean}
 })
 
 

@@ -23,7 +23,8 @@ async function getUser(req, res) {
 async function saveUserName(userData){
     const user =new registerUser({
         userId:userData.userId,
-        username:userData.username
+        username:userData.username,
+        isNewRegistration:userData.isNewRegistration
     })
 
     try{
@@ -35,18 +36,22 @@ async function saveUserName(userData){
 }
 
 async function saveUser(req, res) {
-    const userFormData = req.body; 
-    const userData = new user({
-        firstName:userFormData.firstName,
-        lastName:userFormData.lastName,
-        phone:userFormData.phone,
-        acceptTerms:userFormData.acceptTerms,
-        isActive: false
-    });
+    const userFormData = req.body;
     try {
-        const userSavedResponse = await userData.save();
-        res.status(201).send(userSavedResponse);
+        //const userSavedResponse = await userData.save();
+        const userSavedResponse = await user.findOneAndUpdate({
+            userId:new ObjectId(userFormData.userId)
+        },{
+            firstName:userFormData.firstName,
+            lastName:userFormData.lastName,
+            phone:userFormData.phone,
+            acceptTerms:userFormData.acceptTerms,
+            isActive: false,
+            isNewRegistration:false
+        });
+        res.status(200).send(userSavedResponse);
     } catch (e) {
+        console.log(e);
         res.send(500);
     }
 }
