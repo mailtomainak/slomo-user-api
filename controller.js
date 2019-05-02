@@ -1,6 +1,7 @@
 const user = require('./UserSchema').model;
 const registerUser = require('./RegisterUserSchema').model;
-const  ObjectId = require('mongoose').Types.ObjectId; 
+const  ObjectId = require('mongoose').Types.ObjectId;
+ 
 async function getUser(req, res) {
     try {
 

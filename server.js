@@ -6,11 +6,20 @@ const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const enableCors = require('./corsMiddleWare');
 const subscribe = require('./newRegistrationQueueSubscriber');
-
+const logglyConfig = require('./loggly-config');
+const expressWinston = require('express-winston');
 const server = express();
+const winston = require('winston');
+const {Loggly} = require('winston-loggly-bulk');
+
 server.use(bodyParser.json());
 server.use(enableCors);
 server.use(authMiddleWare);
+server.use(expressWinston.logger({
+        transports:[
+                new winston.transports.Loggly(logglyConfig)
+        ]
+}));
 server.use('/user',userRouter);
 
 server.listen(config.PORT,()=>(   
